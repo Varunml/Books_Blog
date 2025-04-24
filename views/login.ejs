@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User</title>
+  </head>
+  <body>
+    <form action="/User/login" method="POST">
+      <label for="Email">Email</label>
+      <input
+        type="text"
+        id="Email"
+        name="Email"
+        placeholder="Please enter your Email"
+      />
+      <label for="Password">Password</label>
+      <input
+        type="text"
+        id="pwd"
+        name="Password"
+        placeholder="Please enter the password"
+      />
+      <button type="submit">Login</button>
+    </form>
+
+    <p>Dont have an account?</p>
+
+    <a href="/User/Signup"> </a>
+    <button type="submit">Create a new account</button>
+
+    <%- include('partials/footer') %>
+  </body>
+</html>
