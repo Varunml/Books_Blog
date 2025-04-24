@@ -1,4 +1,5 @@
 const express = require("express");
+require("dotenv").config();
 const app = express();
 const PORT = 3000;
 const path = require("path");
@@ -10,8 +11,9 @@ const newMovieRouter = require("./Routes/newMovieRoute");
 const deleteRouter = require("./Routes/deleteMoviesRouter");
 const userRouter = require("./Routes/userRoute");
 const signUpRouter = require("./Routes/signup");
-
+console.log(process.env.hello);
 dbConnect();
+
 app.use(express.static("Public"));
 app.use(express.urlencoded({ extended: true }));
 app.set("views", path.join(__dirname, "views"));
