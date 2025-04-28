@@ -3,7 +3,6 @@ const bookModel = require("../Models/authorModels");
 const { isEmail } = require("validator");
 ////Library/Mobile Documents/com~apple~CloudDocs/Learning/complete-javascript-course-master/02-Fundamentals-Part-2/Node JS/Express/Coding/Challenges/File Project/Books/controllers/blog_index.js
 
-
 const blog_index = async (req, res) => {
   try {
     const allBooks = await bookModel.find({});
@@ -46,7 +45,7 @@ const blog_add = async (req, res) => {
   res.send("Details have been added successfully!");
 };
 
-const blog_User = async (req, res) => {
+const blog_SignUp = async (req, res) => {
   try {
     if (!req.body.Email || !req.body.Password) {
       return res.status(400).send("Please enter email and password");
@@ -54,13 +53,12 @@ const blog_User = async (req, res) => {
     if (!isEmail(req.body.Email)) {
       return res.status(400).send("Please enter Valid Email");
     }
-  
+
     const userData = new userModel(req.body);
-    console.log(userData.Email);
+    // console.log(userData.Email);
     const savedUser = await userData.save();
     res.status(200).send(`User added successfully`);
   } catch (error) {
-
     if (error.code === 11000) {
       console.error(error);
       res.status(400).send({ message: "Email id already exists" });
@@ -68,7 +66,7 @@ const blog_User = async (req, res) => {
   }
 };
 
-const blog_SignUp = async (req, res) => {
+const blog_User = async (req, res) => {
   try {
   } catch {}
 };

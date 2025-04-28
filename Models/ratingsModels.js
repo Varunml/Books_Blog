@@ -9,13 +9,17 @@ const ratingSchema = new mongoose.Schema({
 
        rating:{
         type:Number,
-        comment: String
-       }
-
-       // [{ type: mongoose.Schema.Types.ObjectId, ref: "RatingsModel" }],
+        comment: String,
+       },
+       description:{
+        type: String
+       },
+    
+    },
+         {timestamps:true}
 
     
-});
+);
 
 const RatingsModel = mongoose.model("Ratings", ratingSchema);
 

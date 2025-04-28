@@ -11,7 +11,8 @@ const newMovieRouter = require("./Routes/newMovieRoute");
 const deleteRouter = require("./Routes/deleteMoviesRouter");
 const userRouter = require("./Routes/userRoute");
 const signUpRouter = require("./Routes/signup");
-console.log(process.env.hello);
+const bcrypt = require("bcrypt");
+// console.log(process.env.hello);
 dbConnect();
 
 app.use(express.static("Public"));
