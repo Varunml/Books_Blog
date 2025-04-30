@@ -4,6 +4,7 @@ const app = express();
 const PORT = 3000;
 const path = require("path");
 const { dbConnect } = require("./db");
+const userModel = require("./Models/userModels");
 const bookModel = require("./Models/authorModels");
 const homeRouter = require("./Routes/homeRoute");
 const errorRouter = require("./Routes/errorRoute");
@@ -14,6 +15,9 @@ const signUpRouter = require("./Routes/signup");
 const bcrypt = require("bcrypt");
 // console.log(process.env.hello);
 dbConnect();
+// await
+
+// console.log(userModel);
 
 app.use(express.static("Public"));
 app.use(express.urlencoded({ extended: true }));

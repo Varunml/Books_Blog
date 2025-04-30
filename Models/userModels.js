@@ -30,6 +30,25 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
+UserSchema.pre("save", async function (next) {
+  // if(!UserSchema.Password.is)
+
+  if (!this.isModified(this.Password)) return next();
+  this.Password = bcrypt.hash(this.Password, 10);
+  next();
+
+  bcrypt.compare(this.Password, bcrypt.hash);
+
+  // var user = this;
+  console.log(`To test if it works`);
+  next();
+});
+
+UserSchema.methods.passwordCheck = async function (password) {
+  const match = await bcrypt.compare(password, this.Password);
+  return;
+};
+
 const userModel = mongoose.model("userModel", UserSchema);
 
-module.exports = userModel;
+module.exports = { userModel, UserSchema };

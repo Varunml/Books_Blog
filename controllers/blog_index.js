@@ -45,34 +45,8 @@ const blog_add = async (req, res) => {
   res.send("Details have been added successfully!");
 };
 
-const blog_SignUp = async (req, res) => {
-  try {
-    if (!req.body.Email || !req.body.Password) {
-      return res.status(400).send("Please enter email and password");
-    }
-    if (!isEmail(req.body.Email)) {
-      return res.status(400).send("Please enter Valid Email");
-    }
-
-    const userData = new userModel(req.body);
-    // console.log(userData.Email);
-    const savedUser = await userData.save();
-    res.status(200).send(`User added successfully`);
-  } catch (error) {
-    if (error.code === 11000) {
-      console.error(error);
-      res.status(400).send({ message: "Email id already exists" });
-    }
-  }
-};
-
-const blog_User = async (req, res) => {
-  try {
-  } catch {}
-};
 module.exports = {
   blog_index,
   blog_delete,
   blog_add,
-  blog_User,
 };

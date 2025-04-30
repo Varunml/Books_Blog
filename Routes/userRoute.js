@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const userModel = require("../Models/userModels");
-const bloguserController = require("../controllers/blog_index");
+const bloguserController = require("../controllers/userAuth.controller");
 
 router.get("/", (req, res) => {
   res.render("login");
@@ -10,3 +10,5 @@ router.get("/", (req, res) => {
 router.post("/", bloguserController.blog_User);
 
 module.exports = router;
+
+// module
