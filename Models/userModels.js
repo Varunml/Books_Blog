@@ -10,18 +10,14 @@ const UserSchema = new mongoose.Schema({
     unique: true,
     validate: [isEmail, "Please enter a valid email"],
     lowercase: true,
-    // match: [
-    //   /^[A-Za-z0-9._]+@[A-Za-z.0-9]+\.[A-Za-z]{2,4}$/,
-    //   "Please enter Valid email",
-    // ],
   },
 
   Password: {
     type: String,
-    hide: true,
+    // hide: true,
     required: [true, "Please enter a valid Password"],
-    unique: true,
-    min: [6, "Please enter minimum 6 password"],
+    // unique: true,
+    minlength: [6, "Please enter minimum 6 password"],
   },
 
   Timestamp: {
@@ -51,4 +47,4 @@ UserSchema.methods.passwordCheck = async function (password) {
 
 const userModel = mongoose.model("userModel", UserSchema);
 
-module.exports = { userModel, UserSchema };
+module.exports =  userModel, UserSchema ;

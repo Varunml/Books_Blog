@@ -13,12 +13,12 @@ const deleteRouter = require("./Routes/deleteMoviesRouter");
 const userRouter = require("./Routes/userRoute");
 const signUpRouter = require("./Routes/signup");
 const bcrypt = require("bcrypt");
-// console.log(process.env.hello);
+
 dbConnect();
-// await
 
 // console.log(userModel);
-
+app.use(express.json());
+// app.use(bodyparser.json());
 app.use(express.static("Public"));
 app.use(express.urlencoded({ extended: true }));
 app.set("views", path.join(__dirname, "views"));
