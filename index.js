@@ -10,7 +10,7 @@ const homeRouter = require("./Routes/homeRoute");
 const errorRouter = require("./Routes/errorRoute");
 const newMovieRouter = require("./Routes/newMovieRoute");
 const deleteRouter = require("./Routes/deleteMoviesRouter");
-const userRouter = require("./Routes/userRoute");
+const userRouter = require("./Routes/loginRoute");
 const signUpRouter = require("./Routes/signup");
 const bcrypt = require("bcrypt");
 
@@ -22,6 +22,7 @@ app.use(express.json());
 app.use(express.static("Public"));
 app.use(express.urlencoded({ extended: true }));
 app.set("views", path.join(__dirname, "views"));
+path.join(__dirname, "Public");
 app.set("view engine", "ejs");
 app.use("/home", homeRouter);
 app.use("/User/login", userRouter);

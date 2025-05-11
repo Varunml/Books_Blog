@@ -4,6 +4,7 @@ const validator = require("validator");
 
 const blog_SignUp = async (req, res) => {
   const { Password, Email } = req.body;
+  console.log(req.body);
 
   try {
     if (!Email || !Password) {
@@ -13,13 +14,20 @@ const blog_SignUp = async (req, res) => {
       return res.status(400).send("Please enter Valid Email");
     }
 
+    const allData = await userModel.find();
+    console.log(allData);
+
+    const correctUserEmail = await userModel.findOne({ Email });
+    if (correctUserEmail) {
+      return res.status(409).send({ message: "Email id already exist" });
+    }
     const salt_rounds = 1;
     const hashPassword = await bcrypt.hash(Password, salt_rounds);
 
     const userData = new userModel({ Email, Password: hashPassword });
     // console.log(userData.Email);
     const savedUser = await userData.save();
-    res.status(200).send(`User added successfully`);
+    res.status(200).send(`${Email} added successfully`);
   } catch (error) {
     if (error.code === 11000) {
       console.error(error);
@@ -28,13 +36,27 @@ const blog_SignUp = async (req, res) => {
   }
 };
 
+const blog_login = async (req, res) => {
+  const { Email, Password } = req.body;
+
+  const user = await userModel.findOne({ Email: req.body.Email });
+
+  if (!user) {
+    return res.status(401).send({ message: "Please enter the correct email" });
+  }
+  const match = await bcrypt.compare(Password, user.Password);
+
+  if (match) {
+    return { message: "You have entered the correct password" };
+  } else {
+    res.status(401).send({ message: "Please enter the correct password" });
+    // throw new error({ message: "Incorrect password" });
+  }
+};
+
 const blog_User = async (req, res) => {
   try {
   } catch {}
-};
-
-const blog_login = async (req, res) => {
-  const { Email, Password } = req.body;
 };
 module.exports = {
   blog_User,

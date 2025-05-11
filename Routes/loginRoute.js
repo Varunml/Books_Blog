@@ -7,7 +7,7 @@ router.get("/", (req, res) => {
   res.render("login");
 });
 
-router.post("/", bloguserController.blog_User);
+router.post("/", bloguserController.blog_login);
 
 module.exports = router;
 

@@ -18,6 +18,7 @@ const UserSchema = new mongoose.Schema({
     required: [true, "Please enter a valid Password"],
     // unique: true,
     minlength: [6, "Please enter minimum 6 password"],
+
   },
 
   Timestamp: {
@@ -30,7 +31,7 @@ UserSchema.pre("save", async function (next) {
   // if(!UserSchema.Password.is)
 
   if (!this.isModified(this.Password)) return next();
-  this.Password = bcrypt.hash(this.Password, 10);
+  this.Password = await bcrypt.hash(this.Password, 10);
   next();
 
   bcrypt.compare(this.Password, bcrypt.hash);
@@ -47,4 +48,4 @@ UserSchema.methods.passwordCheck = async function (password) {
 
 const userModel = mongoose.model("userModel", UserSchema);
 
-module.exports =  userModel, UserSchema ;
+(module.exports = userModel), UserSchema;
