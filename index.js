@@ -16,13 +16,11 @@ const bcrypt = require("bcrypt");
 
 dbConnect();
 
-// console.log(userModel);
-app.use(express.json());
-// app.use(bodyparser.json());
+// app.use(express.json());
 app.use(express.static("Public"));
 app.use(express.urlencoded({ extended: true }));
 app.set("views", path.join(__dirname, "views"));
-path.join(__dirname, "Public");
+// path.join(__dirname, "Public");
 app.set("view engine", "ejs");
 app.use("/home", homeRouter);
 app.use("/User/login", userRouter);
