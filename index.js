@@ -13,6 +13,9 @@ const deleteRouter = require("./Routes/deleteMoviesRouter");
 const userRouter = require("./Routes/loginRoute");
 const signUpRouter = require("./Routes/signup");
 const bcrypt = require("bcrypt");
+const allUserRouter = require("./Routes/allUserRoute");
+const { configDotenv } = require("dotenv");
+// configDotenv
 
 dbConnect();
 
@@ -27,6 +30,7 @@ app.use("/User/login", userRouter);
 app.use("/", signUpRouter);
 app.use("/add/movies", newMovieRouter);
 app.use("/", deleteRouter);
+app.use("/allUser", allUserRouter);
 app.use("/", errorRouter);
 
 app.listen(PORT, (err) => {
