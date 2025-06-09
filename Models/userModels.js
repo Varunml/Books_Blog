@@ -18,7 +18,10 @@ const UserSchema = new mongoose.Schema({
     required: [true, "Please enter a valid Password"],
     // unique: true,
     minlength: [6, "Please enter minimum 6 password"],
-
+  },
+  role: {
+    type: String,
+    enum: ["admin", "user"],
   },
 
   Timestamp: {

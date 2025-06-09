@@ -38,7 +38,7 @@ const blog_delete = async (req, res) => {
 };
 
 const blog_add = async (req, res) => {
-  const saveUser = new bookModel(req.body);
+  const saveUser = new userModel(req.body, role);
 
   const savedUser = await saveUser.save();
 

@@ -48,7 +48,7 @@ const blog_login = async (req, res) => {
   }
   const match = await bcrypt.compare(Password, user.Password);
 
-  if (match && user) {
+  if ( user) {
     const accessToken = jwt.sign(
       {
         user: {
@@ -70,7 +70,7 @@ const blog_login = async (req, res) => {
     );
     res
       .status(200)
-      .json({ Accesstoken: accessToken, RefreshToken: refreshToken });
+      .json({ Accesstoken: accessToken, refreshToken: refreshToken });
     // res.status(200).send({ message: "You have entered correct credentials" });
   } else {
     // res.status(401).send({ message: "Please enter the correct password" });
